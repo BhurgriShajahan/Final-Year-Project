@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="/student/base::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>View Contacts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Add viewport meta tag for better responsiveness -->
+</head>
+
+<body>
+    <section>
+       <div class="container text-center">
+       <!-- Search contact  -->
+         <form th:action="@{/student/viewContacts}" method="get" class="form-group row mt-5">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" id="keyword" name="keyword" th:value="${searchKeyword}" class="form-control"
+                        placeholder="Search Contact" required="required" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-success btn-sm">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+            <div class="card">
+                <!-- Save Contact Message Alert -->
+                <div th:if="${session.saveContactmsg}" th:classappend="${session.saveContactmsg.type}"
+                    class="alert alert-dismissble" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
+                    <p th:text="${session.saveContactmsg.content}" class="text-center"></p>
+                    <th:block th:text="${@myservices.removeMessage()}"></th:block>
+                </div>
+                <!-- Update Contact Message Alert -->
+                <div th:if="${session.updateContactmsg}" th:classappend="${session.updateContactmsg.type}"
+                    class="alert alert-dismissble" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
+                    <p th:text="${session.updateContactmsg.content}" class="text-center"></p>
+                    <th:block th:text="${@myservices.removeMessage()}"></th:block>
+                </div>
+                
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <h4 class="text-center text-info">Contacts List</h4>
+                        <table class="table text-black">
+                            <thead>
+                                <tr>
+                                    <th scope="col">NAME</th>
+                                    <th scope="col">SURNAME</th>
+                                    <th scope="col">PHONE</th>
+                                    <th scope="col">EMAIL</th>
+                                    <th scope="col">ABOUT</th>
+                                    <th scope="col">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="i: ${allContacts}">
+                                    <td>
+                                        <img th:src="@{'/images/'+ ${i.image}}" alt="pic" class="profile" /><br />
+                                        <span th:text="${i.name}"></span>
+                                    </td>
+                                    <td>
+                                        <span th:text="${i.surname}"></span>
+                                    </td>
+                                    <td>
+                                        <span th:text="${i.phone}"></span>
+                                    </td>
+                                    <td>
+                                        <a href="#" th:href="@{'/student/showContact/'+${i.id}}">
+                                            <span th:text="${i.email}"></span>
+                                        </a>
+                                    </td>
+                                    <td class="p-2">
+                                        <span th:text="${i.about}"></span>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{'/student/editContact/'+${i.id}}" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                        <a th:href="@{'/student/deleteContact/'+${i.id}}" class="btn btn-danger btn-sm">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <b th:text="${emptyContact}" class="text-danger"></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+</body>
+
+</html>

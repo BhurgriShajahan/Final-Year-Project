@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/student/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>notification</title>
+  </head>
+  <body>
+      <section>
+        <div class="container mt-4">
+            <h4 class="text-center">Notifications</h4>
+            
+            <!-- Check if there are notifications -->
+            <div th:if="${getAllNotification.size() > 0}">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificationModal">
+                    Open Notifications
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Notifications</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Display notifications in modal body -->
+                                <div th:each="notification : ${getAllNotification}" class="alert alert-info" role="alert">
+                                    <strong>ID:</strong> <span th:text="${notification.id}"></span><br/>
+                                    <strong>Title:</strong> <span th:text="${notification.title}"></span><br/>
+                                    <strong>Message:</strong> <span th:text="${notification.Message}"></span><br/>
+                                    <strong>Date:</strong> <span th:text="${notification.date}"></span>
+                                    <!-- Add more details as needed -->
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Display a message if there are no notifications -->
+            <h5 class="text-center text-danger" th:if="${getAllNotification.size() == 0}">No notifications available</h5>
+        </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/teacher/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>edit</title>
+  </head>
+  <style></style>
+  <body>
+    <section>
+      <div class="container p-4">
+        <div class="row">
+          <div class="col-md-12 md-6 sm-4 ml-6">
+            <div class="card">
+              <h4 class="text-center text-info bg-dark p-2">
+                Update My Profile
+              </h4>
+              <div class="card-header">
+                <div class="card-body text-center">
+                  <!-- User Specific profile image -->
+                  <img
+                    th:src="@{'/images/'+ ${user.image}}"
+                    alt=""
+                    class="myProfile my-3"
+                  />
+                  <div></div>
+                  <form
+                    th:action="@{/teacher/editProfileProcess}"
+                    enctype="multipart/form-data"
+                    th:method="post"
+                    th:object="${user}"
+                  >
+                    <div class="table-responsive">
+                      <table class="table text-black text-center">
+                        <tr>
+                          <td hidden="">
+                            <input
+                              class="form-control"
+                              name="id"
+                              th:value="${user.id}"
+                              hidden=""
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <td>
+                            <input
+                              class="form-control"
+                              name="name"
+                              required="required"
+                              placeholder="Your name"
+                              th:value="${user.name}"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col">City</th>
+                          <td>
+                            <input
+                              class="form-control"
+                              name="city"
+                              placeholder="city"
+                              th:value="${user.city}"
+                              required="required"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Address</th>
+                          <td>
+                            <input
+                              class="form-control"
+                              name="address"
+                              placeholder="Address"
+                              th:value="${user.address}"
+                              required="required"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Contact</th>
+                          <td>
+                            <input
+                              class="form-control"
+                              name="phone"
+                              required="required"
+                              placeholder="Your phone"
+                              th:value="${user.phone}"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col">About</th>
+                          <td>
+                            <input
+                              class="form-control"
+                              name="marital"
+                              placeholder="marital status"
+                              th:value="${user.marital}"
+                              required="required"
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="col">Qualification</th>
+                          <td>
+                            <input
+                              class="form-control"
+                              name="qualification"
+                              placeholder="qualification"
+                              th:value="${user.qualification}"
+                              required="required"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Experience</th>
+                          <td>
+                            <input
+                              class="form-control"
+                              name="Experience"
+                              placeholder="Experience"
+                              th:value="${user.Experience}"
+                              required="required"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Gender</th>
+                          <td class="text-left">
+                            <input
+                              type="radio"
+                              name="gender"
+                              required="required"
+                              value="male"
+                              id="male"
+                            />
+                            <label for="male">Male</label>
+                            <input
+                              type="radio"
+                              name="gender"
+                              required="required"
+                              value="female"
+                              id="female"
+                            />
+                            <label for="female">Female</label>
+                            <input
+                              type="radio"
+                              name="gender"
+                              required="required"
+                              value="other"
+                              id="other"
+                            />
+                            <label for="other">Other</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Choose Profile</th>
+                          <td>
+                            <input
+                              type="file"
+                              class="form-control"
+                              name="proImg"
+                            />
+                            <input
+                              type="submit"
+                              class="btn btn-primary btn-block my-3"
+                              value="Save & Update"
+                            />
+                            <a
+                              th:href="@{/teacher/myProfile}"
+                              class="btn btn-block bg-danger text-light"
+                              >Cancel</a
+                            >
+                          </td>
+                        </tr>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

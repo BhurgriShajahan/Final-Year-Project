@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/admin/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>myProfile</title>
+  </head>
+  <body>
+    <section>
+      <div class="container p-4">
+        <div class="row">
+          <div class="col-md-12 md-6 sm-4 ml-6">
+            <div class="card">
+              <div class="card-header">
+                <!-- Update Message Alert -->
+                <div
+                  th:if="${session.TPUMsg}"
+                  th:classappend="${session.TPUMsg.type}"
+                  class="alert alert-dismissble"
+                  role="alert"
+                >
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                  >
+                    x
+                  </button>
+                  <p
+                    th:text="${session.TPUMsg.content}"
+                    class="text-center"
+                  ></p>
+                  <th:block th:text="${@myservices.removeMessage()}"></th:block>
+                </div>
+
+                <div class="card-body text-center">
+                  <h4 class="text-left" style="color: blue">
+                    <i class="fas fa-user-circle"></i>My profile
+                  </h4>
+                  <!-- User Specific profile image -->
+                  <a th:href="@{'/admin/editProfile/'+${userName.id}}"
+                    ><img
+                      th:src="@{'/images/'+ ${userName.image}}"
+                      alt=""
+                      class="myProfile file"
+                    />
+                  </a>
+
+                  <div>
+                    <h3
+                      th:text="${userName.name.toUpperCase()}"
+                      style="color: green"
+                    ></h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table
+                      class="table text-black text-center table-borderless"
+                      style="background-color: white"
+                    >
+                      <tbody>
+                        <tr>
+                          <th scope="col">Email</th>
+                          <td>
+                            <span
+                              ><a href="#" th:text="${userName.email}"></a
+                            ></span>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th scope="col">Contact</th>
+                          <td th:text="${userName.phone}"></td>
+                        </tr>
+
+                        <tr>
+                          <th scope="col">City</th>
+                          <td th:text="${userName.city}"></td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Address</th>
+                          <td th:text="${userName.address}"></td>
+                        </tr>
+
+                        <tr>
+                          <th scope="col">Gender</th>
+                          <td th:text="${userName.gender}"></td>
+                        </tr>
+                        <tr>
+                          <th scope="col">About</th>
+                          <td th:text="${userName.marital}"></td>
+                        </tr>
+
+                        <tr>
+                          <th scope="col" style="color: green">
+                            Account Active
+                          </th>
+                          <td
+                            th:text="${userName.active}"
+                            style="color: green"
+                          ></td>
+                        </tr>
+                      </tbody>
+
+                      <tbody></tbody>
+                    </table>
+
+                    <div class="container text-center">
+                      <a
+                        class="btn btn-info btn-block"
+                        th:href="@{'/admin/editProfile/'+${userName.id}}"
+                        >Edit</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

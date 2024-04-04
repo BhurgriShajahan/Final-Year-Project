@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/student/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>show contact detail</title>
+  </head>
+  <body>
+    <section>
+      <div class="container p-4">
+        <div class="row">
+          <div class="col-md-12 md-6 sm-4 ml-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="bg-dark p-4 sm-2 text-light text-center">
+                  Contact Detail
+                </h3>
+
+                <div class="card-body text-center">
+                  <!-- User Specific profile image -->
+                  <a
+                    th:href="@{'/student/editContact/'+${userDetail.id}}"
+                    type="file"
+                    ><img
+                      th:src="@{'/images/'+ ${userDetail.image}}"
+                      alt=""
+                      class="myProfile file"
+                  /></a>
+
+                  <div>
+                    <h3
+                      th:text="${userDetail.name.toUpperCase()}"
+                      style="color: green"
+                    ></h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table
+                      class="table text-black text-center"
+                      style="background-color: white"
+                    >
+                      <tr>
+                        <th scope="col">Email</th>
+                        <td>
+                          <span
+                            ><a href="#" th:text="${userDetail.email}"></a
+                          ></span>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="col">Phone</th>
+                        <td th:text="${userDetail.phone}" scope="col"></td>
+                      </tr>
+                      <tr>
+                        <th scope="col">About</th>
+                        <td th:text="${userDetail.about}" scope="col"></td>
+                      </tr>
+
+                      <tr>
+                        <th scope="col">Surname</th>
+                        <td th:text="${userDetail.surname}"></td>
+                      </tr>
+
+                      <tbody></tbody>
+                    </table>
+
+                    <div class="container text-center">
+                      <a
+                        class="btn btn-primary btn-block"
+                        th:href="@{'/student/editContact/'+${userDetail.id}}"
+                        >Edit</a
+                      >
+                      <a
+                        th:href="@{'/student/deleteContact/'+${userDetail.id}}"
+                        class="btn btn-danger btn-block"
+                        >Delete</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/teacher/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Teacher Index</title>
+
+    <style></style>
+  </head>
+  <body>
+    <section>
+      <div class="dashboard-header">
+         <div class="container">
+           <!-- Password change message -->
+				<div th:if="${session.passMsg}"
+				     class="alert" 
+				     th:class="${'alert-' + session.passMsg.type}"
+				     role="alert">
+				     
+				    <p th:text="${session.passMsg.content}" class="text-center p-2 m-2"></p>
+				    <th:block th:text="${@myservices.removeMessage()}"></th:block>
+				</div>
+         </div>
+      </div>
+      <div class="container mt-4">
+        <h4 class="dashboard-title  mt-4">Teacher Dashboard</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title">Profile</h5>
+                <p class="card-text">
+                  View and update your profile information.
+                </p>
+
+                <a
+                  href="#"
+                  class="btn btn-primary btn-sm"
+                  data-toggle="modal"
+                  data-target="#profileModal"
+                  >View Profile</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title">Students</h5>
+                <p class="card-text">
+                  View and manage information about your students.
+                </p>
+                <a
+                  th:href="@{/teacher/viewStudents}"
+                  class="btn btn-primary btn-sm"
+                  >View Students</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title">Courses</h5>
+                <p class="card-text">
+                  Manage your courses and class materials.
+                </p>
+                <a
+                  th:href="@{/teacher/createCourse}"
+                  class="btn btn-success btn-sm"
+                  >Create Course
+                </a>
+                <a
+                  th:href="@{/teacher/viewCourses}"
+                  class="btn btn-primary btn-sm m-1"
+                  >View Course
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title">Contacts</h5>
+                <p class="card-text">Manage your Contacts</p>
+
+                <a
+                  th:href="@{/teacher/viewContacts}"
+                  class="btn btn-primary btn-sm"
+                  >Your Contacts
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Modal -->
+      <div
+        class="modal fade"
+        id="profileModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="profileModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="profileModalLabel">Your Profile</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="teacherName">Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="teacherName"
+                  th:value="${user.name}"
+                  readonly
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="teacherEmail">Email:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="teacherEmail"
+                  th:value="${user.email}"
+                  readonly
+                />
+              </div>
+              <div class="form-group">
+                <label for="teacherEmail">Phone:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="teacherEmail"
+                  th:value="${user.phone}"
+                  readonly
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="teacherSubject">Qualification:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="teacherSubject"
+                  th:value="${user.qualification}"
+                  readonly
+                />
+              </div>
+
+              <!-- Add more profile information as needed -->
+            </div>
+            <div class="modal-footer">
+              <a
+                class="btn btn-success"
+                th:href="@{'/teacher/editProfile/'+${user.id}}"
+                >Update</a
+              >
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+  </body>
+</html>

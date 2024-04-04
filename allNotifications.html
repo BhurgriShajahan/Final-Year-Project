@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="/admin/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>All Notifications</title>
+</head>
+<body>
+    <section>
+        <div class="container mt-4">
+                   <!-- Delete notification message -->
+                   <div 
+                         th:if="${session.notiMessage}"
+                         th:classappend="${session.notiMessage.type}"
+                         class="alert alert-dismissble"
+                         role="alert" > 
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
+                         <p th:text="${session.notiMessage.content}" class="text-center"></p>
+                         <th:block th:text="${@myservices.removeMessage()}">
+                         </th:block>
+                       
+                    </div>
+                    <a th:href="@{/admin/sendNotification}" class="btn btn-sm btn-success"> Send
+                    Notification </a>
+            <h4 class="text-center">All Notifications</h4>
+            
+            <!-- Check if there are notifications -->
+            <div th:if="${allNotifications.size() > 0}">
+            <div class="table-responsive">
+                <table class="table  bg-light text-info table-stript">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Message</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                            <!-- Add more columns if needed -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="notification : ${allNotifications}">
+                            <td th:text="${notification.title}"></td>
+                            <td th:text="${notification.message}"></td>
+                            <td th:text="${notification.date}"></td>
+                            <td>
+                             <a class="btn btn-sm btn-success mx-2 text-light" th:href="@{'/admin/editNotification/'+${notification.id}}">Edit</a>
+                                 <a class="btn btn-sm btn-danger mx-2 mt-1 text-light" th:href="@{'/admin/deleteNotification/'+${notification.id}}">Delete</a>
+                            </td>
+                          </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            
+            <!-- Display a message if there are no notifications -->
+            <h5 class="text-center text-danger" th:if="${allNotifications.size() == 0}">No notifications available</h5>
+        </div>
+    </section>
+</body>
+</html>

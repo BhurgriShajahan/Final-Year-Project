@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/admin/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Search Teacher Result</title>
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <form
+          th:action="@{/admin/searchTeachers}"
+          method="get"
+          class="form-group row mt-5 form-inline my-2"
+        >
+          <div class="col-md-4 text-center">
+            <div class="input-group">
+              <input
+                type="text"
+                name="query"
+                class="form-control"
+                placeholder="Search Teachers"
+              />
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-success btn-sm">
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="jumbotron bg-dark text-center text-white">
+              <h1>Tutors Data</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="row p-4">
+          <div class="col-md-4" th:each="teacher : ${searchResults}">
+            <div class="card bg-dark text-white text-center d-flex">
+              <div class="card-header">
+                <span style="color: steelblue">
+                  <img
+                    th:src="@{'/images/'+${teacher.image}}"
+                    alt="profile"
+                    class="profile"
+                  />
+                </span>
+                <h1 class="text-center" th:text="${teacher.name}"></h1>
+              </div>
+
+              <div class="card-body">
+                <span style="color: steelblue">Email</span>
+                <h5 class="text-center" th:text="${teacher.email}"></h5>
+                <span style="color: steelblue">Country</span>
+                <h5 class="text-center" th:text="${teacher.country}"></h5>
+                <span style="color: steelblue">City</span>
+                <h5 class="text-center" th:text="${teacher.city}"></h5>
+                <span style="color: steelblue">Experience</span>
+                <h5 class="text-center" th:text="${teacher.experience}"></h5>
+                <span style="color: steelblue">Contact no</span>
+                <h5 class="text-center" th:text="${teacher.phone}"></h5>
+                <span style="color: steelblue">Qualification</span>
+                <h5 class="text-center" th:text="${teacher.qualification}"></h5>
+              </div>
+              <div class="card-footer">
+                <span style="color: steelblue">Degree</span>
+                <h5 class="text-center" th:text="${teacher.degree}"></h5>
+                <hr />
+                <a
+                  th:href="@{'/admin/editTeacher/'+${teacher.id}}"
+                  class="btn btn-success mx-2 btn-sm"
+                  >Update</a
+                >
+                <a
+                  th:onclick="|deleteTeacher(${teacher.id})|"
+                  class="btn btn-danger mx-2 btn-sm"
+                  >Delete</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div th:if="${#lists.isEmpty(searchResults)}">
+            <h4
+              th:text="${records}"
+              class="text-center text-danger alert alert-danger"
+            ></h4>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/student/base::layout(~{::section})"
+>
+  <title>Inbox</title>
+  <head> </head>
+  <body>
+    <section>
+      <div class="container">
+      <!-- Send delete alert -->
+        <div
+          th:if="${session.msge}"
+          th:classappend="${session.msge.type}"
+          class="alert alert-dismissble"
+          role="alert"
+        >
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            x
+          </button>
+          <p th:text="${session.msge.content}" class="text-center"></p>
+          <th:block th:text="${@myservices.removeMessage()}"></th:block>
+        </div>
+      <h2 class="text-info text-center display-6">All Messages</h2>
+        <table class="table table-light text-center">
+          <thead>
+            <tr>
+              <th>Sender</th>
+              <th>Content</th>
+              <th>Date</th>
+              <th>Action</th>
+              <!-- Add more columns as needed -->
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="message : ${messages}">
+              <td th:text="${message.sender}"></td>
+              <td th:text="${message.content}"></td>
+              <td th:text="${message.date}" class="text-primary"></td>
+              <td>
+                <!-- Add this button/link inside your message listing loop -->
+                <a
+                  th:href="@{'/student/deleteMessage/' + ${message.id}}"
+                  class="btn btn-danger btn-sm"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>

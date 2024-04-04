@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/teacher/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Page not found</title>
+  </head>
+  <body>
+    <section>
+      <main>
+        <div class="container">
+          <section
+            class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center"
+          >
+            <h1>404</h1>
+            <h2>The page you are looking for doesn't exist.</h2>
+            <div class="alert alert-danger ">
+               <small th:text="${message}"></small>
+            </div>
+            <a class="btn" th:href="@{/teacher/index}">Back to home</a>
+          </section>
+        </div>
+      </main>
+      <!-- End #main -->
+    </section>
+  </body>
+</html>

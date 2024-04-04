@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="/student/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8"/>
+    <title>SendMsg</title>
+</head>
+<body>
+<section>
+    <div th:if="${session.m}" th:classappend="${session.m.type}" class="alert alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            x
+        </button>
+        <p th:text="${session.m.content}" class="text-center"></p>
+        <th:block th:text="${@myservices.removeMessage()}"></th:block>
+    </div>
+
+    <div class="container bg-light p-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="jumbotron bg-dark text-center text-white">
+                    Send Message To Teacher
+                </h2>
+            </div>
+        </div>
+
+        <div th:if="${person != null}">
+            <p>Recipient: <span th:text="${person.name}"></span></p>
+
+            <div class="text-center col-md-8">
+                <form th:action="@{/student/sendMessageProcess}" th:object="${message}" method="post"
+                      class="form-group">
+                    <input name="recipient.id" th:value="${person.id}" type="hidden"/>
+                    <textarea id="content" name="content" th:field="*{content}" rows="4" placeholder="Type..."
+                              class="form-control" 
+                              required="required"></textarea>
+
+                    <button type="submit" class="btn btn-primary btn-sm mt-2">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <a th:href="@{/student/index}">Back to Dashboard</a>
+    </div>
+</section>
+</body>
+</html>

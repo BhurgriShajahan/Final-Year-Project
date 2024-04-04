@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/teacher/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>edit contact</title>
+  </head>
+  <body>
+    <section>
+      <div class="container p-4">
+        <div class="row">
+          <div class="col-md-12 md-6 sm-4 ml-6">
+            <div class="card">
+              <h1 class="text-center text-light bg-dark p-2">Update Contact</h1>
+              <div class="card-header"></div>
+              <form
+                th:action="@{/teacher/editContactProcess}"
+                th:method="post"
+                enctype="multipart/form-data"
+                th:objet="${updateContact}"
+              >
+                <div class="table-responsive">
+                  <table class="table text-black text-center">
+                    <tr>
+                      <th scope="col">Name</th>
+                      <td>
+                        <input
+                          type="text"
+                          name="id"
+                          th:value="${updateContact.id}"
+                          hidden=""
+                        />
+                        <input
+                          class="form-control"
+                          name="name"
+                          required="required"
+                          placeholder="Username"
+                          th:value="${updateContact.name}"
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="col">Surname</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          name="surname"
+                          required="required"
+                          placeholder="Surname"
+                          maxlength="100"
+                          th:value="${updateContact.surname}"
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="col">Email</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          name="email"
+                          required="required"
+                          placeholder="User email"
+                          maxlength="100"
+                          th:value="${updateContact.email}"
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="col">Phone</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          name="phone"
+                          required="required"
+                          placeholder="Contact no"
+                          max="15"
+                          th:value="${updateContact.phone}"
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="col">About</th>
+                      <td>
+                        <textarea
+                          placeholder="about / its Optional"
+                          name="about"
+                          cols="20"
+                          class="form-control"
+                          rows="4"
+                          maxlength="500"
+                          th:text="${updateContact.about}"
+                        ></textarea>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="col">Profile</th>
+                      <td>
+                        <input
+                          type="file"
+                          class="form-control"
+                          name="cImage"
+                          th:value="${updateContact.image}"
+                        />
+                      </td>
+                    </tr>
+
+                    <tbody></tbody>
+                  </table>
+
+                  <div class="container text-center my-2">
+                    <input
+                      type="submit"
+                      class="btn btn-primary"
+                      value="Save & Update"
+                    />
+                    <a
+                      th:href="@{/teacher/viewContacts}"
+                      class="btn btn-danger"
+                    >
+                      Cancel
+                    </a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

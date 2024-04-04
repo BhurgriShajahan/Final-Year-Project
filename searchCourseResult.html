@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/student/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>SearchResult</title>
+
+    <style>
+    </style>
+  </head>
+  <body>
+    <section class="container mt-4">
+     
+          <!-- Display searched courses -->
+    <section>
+       <div class="container">
+         <form th:action="@{/student/searchCourse}" method="get" class="form-group row mt-5">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" id="keyword" name="keyword" th:value="${param.keyword}" class="form-control"
+                        placeholder="Search Course" required="required" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-success btn-sm">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+       </div>
+        <h3 class="text-center">Searched Courses</h3>
+        <div class="row">
+            <!-- Loop through all courses and display them as cards -->
+            <div th:each="course : ${searchedCourses}" class="col-md-12 mb-4">
+                <div class="card bg-dark text-light ">
+                    <div class="card-header m-2">
+                        <h5 class="card-title text-info text-center" th:text="${course.name}"></h5>
+                    </div>
+                    <div class="card-body ">
+                        <p class="card-text" th:text="${course.description}"></p>
+                        Start course from: <small th:text="${course.startDate}"></small>
+                        To End: <small th:text="${course.endDate}"></small>
+                        <br>
+                        <small>Contact No:</small>
+                        <small th:text="${course.teacher.phone}"></small>
+                    </div>
+                    <div class="card-footer text-center m-2">
+                        Teacher:
+                        <small class="text-primary" th:text="${course.teacher.name}"></small>
+                        <small class="text-primary" th:text="${course.teacher.surname}"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <!-- Show a message if no courses found -->
+        <p th:if="${#lists.isEmpty(searchedCourses)}" class="text-center text-danger">No courses found!</p>
+    </section>
+    </section>
+  </body>
+</html>

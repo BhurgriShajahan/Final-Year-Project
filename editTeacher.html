@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/admin/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>editTeacher</title>
+  </head>
+  <body>
+    <section>
+      <div class="container bg-light p-4">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="jumbotron bg-dark text-center text-white">Update Teacher</h3>
+          </div>
+        </div>
+
+        <form
+          th:action="@{/admin/editTeacherProcess}"
+          th:method="post"
+          th:object="${user}"
+        >
+          <input type="text" name="id" th:value="${user.id}" hidden="" />
+          <br />
+
+          <div class="row">
+            <!-- First Row  -->
+            <div class="col-md-4">
+              <!-- First Column  -->
+              <label for="name">Your name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                placeholder="Your name"
+                th:value="${user.name}"
+                th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('name')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <br />
+
+              <label for="surname">Surname</label>
+              <input
+                type="text"
+                name="surname"
+                id="surname"
+                class="form-control"
+                placeholder="Your surname"
+                th:value="${user.surname}"
+                th:classappend="${#fields.hasErrors('surname')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('surname')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <label for="gender">Gender</label>
+              <input
+                type="text"
+                name="gender"
+                id="gender"
+                class="form-control"
+                th:value="${user.gender}"
+                th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('gender')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <label for="age">Age</label>
+              <input
+                type="text"
+                name="age"
+                id="age"
+                class="form-control"
+                placeholder="Your age"
+                th:value="${user.age}"
+                th:classappend="${#fields.hasErrors('age')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('age')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <br />
+              <label for="marital">Status</label>
+              <input
+                type="text"
+                name="marital"
+                class="form-control"
+                th:value="${user.marital}"
+                id="marital"
+                th:classappend="${#fields.hasErrors('marital')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('marital')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <!-- Second column  -->
+
+              <label for="country">Country</label>
+              <input
+                type="text"
+                name="country"
+                id="country"
+                class="form-control"
+                th:value="${user.country}"
+                th:classappend="${#fields.hasErrors('country')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('country')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+              <label for="city">City name</label>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                class="form-control"
+                th:value="${user.city}"
+                th:classappend="${#fields.hasErrors('city')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('city')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <label for="address">Your address</label>
+              <textarea
+                rows="5"
+                cols="6"
+                name="address"
+                class="form-control"
+                placeholder="Your address"
+                id="address"
+                th:text="${user.address}"
+                th:classappend="${#fields.hasErrors('address')} ? 'is-invalid' : '' "
+              ></textarea>
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('address')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <br />
+
+              <label for="phone">Contact number</label>
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                class="form-control"
+                placeholder="Your contact number"
+                th:value="${user.phone}"
+                th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('phone')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+              <br /><br />
+
+              <!-- Optional and hidden -->
+              <select
+                name="fname"
+                id="fname"
+                class="form-control"
+                hidden=""
+                th:classappend="${#fields.hasErrors('fname')} ? 'is-invalid' : '' "
+              >
+                <option value="reading" selected="selected">null</option>
+              </select>
+
+              <!-- Optional and hidden -->
+              <select
+                name="standerd"
+                class="form-control"
+                hidden=""
+                th:classappend="${#fields.hasErrors('standerd')} ? 'is-invalid' : '' "
+              >
+                <option value="reading" selected="selected">null</option>
+              </select>
+
+              <!-- Optional and hidden -->
+              <select
+                name="subject"
+                class="form-control"
+                hidden=""
+                th:classappend="${#fields.hasErrors('subject')} ? 'is-invalid' : '' "
+              >
+                <option value="reading" selected="selected">null</option>
+              </select>
+
+              <!-- Optional and hidden -->
+              <select
+                name="tuitionType"
+                class="form-control"
+                hidden=""
+                th:classappend="${#fields.hasErrors('tuitionType')} ? 'is-invalid' : '' "
+              >
+                <option value="reading" selected="selected">null</option>
+              </select>
+
+              <!-- Optional and hidden -->
+              <select
+                name="tutorPreferred"
+                class="form-control"
+                hidden=""
+                th:classappend="${#fields.hasErrors('tutorPreferred')} ? 'is-invalid' : '' "
+              >
+                <option value="reading" selected="selected">null</option>
+              </select>
+
+              <!-- Optional and hidden -->
+              <select
+                name="going"
+                class="form-control"
+                hidden=""
+                th:classappend="${#fields.hasErrors('going')} ? 'is-invalid' : '' "
+              >
+                <option value="reading" selected="selected">null</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="quali">Qualification</label>
+              <input
+                type="text"
+                name="qualification"
+                id="quali"
+                class="form-control"
+                th:value="${user.qualification}"
+                th:classappend="${#fields.hasErrors('qualification')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('qualification')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <label for="degree">Degree</label>
+              <input
+                type="text"
+                name="degree"
+                id="degree"
+                class="form-control"
+                th:value="${user.degree}"
+                th:classappend="${#fields.hasErrors('degree')} ? 'is-invalid' : '' "
+                placeholder="Degree"
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('degree')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <label for="experience">Experience</label>
+              <input
+                type="text"
+                name="experience"
+                id="experience"
+                class="form-control"
+                th:value="${user.experience}"
+                th:classappend="${#fields.hasErrors('experience')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('experience')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <br />
+              <label for="em">Email address</label>
+              <input
+                type="email"
+                name="email"
+                id="em"
+                class="form-control"
+                placeholder="Email address"
+                th:value="${user.email}"
+                th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('email')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+
+              <br />
+              <label for="pass">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="pass"
+                class="form-control"
+                placeholder="password"
+                th:value="${user.password}"
+                th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : '' "
+              />
+
+              <div
+                class="invalid-feedback"
+                th:each="i : ${#fields.errors('password')}"
+              >
+                <p th:text="${i}" style="color: red"></p>
+              </div>
+            </div>
+
+            <div class="container text-center my-2">
+              <div class="row col-md-6"></div>
+              <input
+                type="submit"
+                class="btn btn-info btn-block"
+                value="Save & Update"
+              />
+
+              <a
+                th:href="@{/admin/viewTeacher}"
+                class="btn btn-block btn-danger"
+                >Cancel</a
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

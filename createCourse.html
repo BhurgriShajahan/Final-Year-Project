@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/teacher/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Course</title>
+
+    <style></style>
+  </head>
+
+  <body>
+    <section>
+      <div class="container mt-5 bg-light p-4">
+        <h2 class="text-center">Create Course</h2>
+        <form
+          th:action="@{/teacher/createCourseProcess}"
+          th:object="${course}"
+          method="post"
+        >
+          <div class="row m-4">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Course Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  th:field="*{name}"
+                  required="required"
+                  placeholder="Course name"
+                />
+                <!-- Display validation errors -->
+                <div th:if="${#fields.hasErrors('name')}">
+                  <small
+                    th:each="error : ${#fields.errors('name')}"
+                    th:text="${error}"
+                    class="text-danger"
+                  ></small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  th:field="*{description}"
+                  rows="3"
+                  required="required"
+                  placeholder="Description"
+                ></textarea>
+                <!-- Display validation errors -->
+                <div th:if="${#fields.hasErrors('description')}">
+                  <small
+                    th:each="error : ${#fields.errors('description')}"
+                    th:text="${error}"
+                    class="text-danger"
+                  ></small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="startDate"
+                  name="startDateString"
+                  required="required"
+                />
+               
+              </div>
+
+              <div class="form-group">
+                <label for="endDate">End Date:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="endDate"
+                  name="endDateString"
+                  required="required"
+                />
+		        
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Create Course</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/admin/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>viewContact</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="container text-center">
+        <div class="container">
+          <h3 class="text-center">View Contact Us</h3>
+          <div class="table-responsive">
+            <table
+              class="table table-bordered table-hover table-striped table-dark"
+            >
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>EMAIL</th>
+                  <th>SUBJECT</th>
+                  <th>MESSAGE</th>
+                  <th>DELETE</th>
+                </tr>
+              </thead>
+		 <tbody>
+		  <tr th:each="i: ${allContacts}">
+		    <td th:text="${i.id}"></td>
+		    <td th:text="${i.name}"></td>
+		    <td th:text="${i.email}"></td>
+		    <td th:text="${i.subject}"></td>
+		    <td th:text="${i.message}"></td>
+		    <td>
+		      <a th:onclick="|deleteContact(${i.id})|" class="btn btn-danger btn-sm">Delete</a>
+		    </td>
+		  </tr>
+		</tbody>
+            </table>
+          </div>
+
+          <div class="container text-center">
+            <h3 th:text="${records}"></h3>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

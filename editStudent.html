@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/admin/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>editStudent</title>
+  </head>
+  <body>
+    <section>
+      <div class="container bg-light p-4">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="jumbotron bg-dark text-center text-white">
+              Update Student
+            </h3>
+          </div>
+        </div>
+        <div>
+          <form
+            th:action="@{/admin/editStudentProcess}"
+            th:method="post"
+            th:object="${editStudent}"
+          >
+            <input name="id" th:value="${editStudent.id}" hidden="" />
+            <br />
+            <div class="row">
+              <!-- First Row  -->
+              <div class="col-md-4">
+                <!-- First Column  -->
+                <label for="name">Your name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="form-control"
+                  placeholder="Your name"
+                  th:value="${editStudent.name}"
+                  required="required"
+                />
+                <label for="em">Email address</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="em"
+                  class="form-control"
+                  placeholder="Email address"
+                  th:value="${editStudent.email}"
+                  required="required"
+                />
+                <label for="country">Country</label>
+                <input
+                  type="text"
+                  name="country"
+                  id="country"
+                  class="form-control"
+                  th:value="${editStudent.country}"
+                  required="required"
+                />
+              </div>
+              <div class="col-md-4">
+                <!-- Second column  -->
+                <label for="city">City name</label>
+                <input
+                  type="text"
+                  name="city"
+                  id="city"
+                  class="form-control"
+                  th:value="${editStudent.city}"
+                  required="required"
+                />
+                <label for="phone">Contact number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  class="form-control"
+                  placeholder="Your contact number"
+                  th:value="${editStudent.phone}"
+                />
+                <label for="gender">Gender</label>
+                <input
+                  type="text"
+                  name="gender"
+                  id="gender"
+                  class="form-control"
+                  th:value="${editStudent.gender}"
+                  required="required"
+                />
+              </div>
+              <div class="col-md-4">
+                <!-- third column start -->
+                <label for="age">Age</label>
+                <input
+                  type="text"
+                  name="age"
+                  id="age"
+                  class="form-control"
+                  placeholder="Your age"
+                  th:value="${editStudent.age}"
+                  required="required"
+                />
+                <label for="standerd">Class</label>
+                <input
+                  type="text"
+                  name="standerd"
+                  id="standerd"
+                  class="form-control"
+                  placeholder="Class"
+                  th:value="${editStudent.standerd}"
+                  required="required"
+                />
+                <label for="subject">Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  id="subject"
+                  class="form-control"
+                  placeholder="Your age"
+                  th:value="${editStudent.subject}"
+                  required="required"
+                />
+              </div>
+              <div class="col-md-4">
+                <!-- third column start -->
+                <label for="password">Password</label>
+                <input
+                  type="text"
+                  name="password"
+                  id="password"
+                  class="form-control"
+                  placeholder="Password"
+                  th:value="${editStudent.password}"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <!-- Row division End-->
+            <div class="container text-center my-2">
+              <div class="row col-md-6"></div>
+              <input
+                type="submit"
+                class="btn btn-info btn-block"
+                value="Save & Update"
+              />
+              <a
+                th:href="@{/admin/viewStudent}"
+                class="btn btn-block btn-danger"
+                >Cancel</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

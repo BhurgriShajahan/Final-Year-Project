@@ -1,0 +1,250 @@
+/* General Styles */
+.bod {
+    background-color: #e2e2e2;
+}
+
+/* SignUp and Sign In Image Icon */
+.image, #image {
+    height: 57px;
+    width: 57px;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+	margin-top:7px;
+    width: 18%;
+    font-family: sans-serif;
+    position: fixed;
+    padding-top: 6px;
+    color: white;
+    z-index: 9999999999999999999;
+}
+
+.sidebar a {
+    display: block;
+    margin: 2px;
+    padding: 4px 10px;;
+    color: white;
+    
+}
+
+.sidebar a:hover {
+    background-color: #e2e2e2;
+    text-decoration: none;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* Content Styles */
+.content {
+    margin-left: 20%;
+}
+
+/* Responsive Styles */
+@media (max-width: 1000px) {
+    .sidebar {
+        background-color: gray;
+        display: none;
+        width: 70%;
+        background-color: rgb(56, 70, 70);
+        height: 100%;
+        position: fixed;
+        color: black;
+    }
+
+    .content {
+        margin-left: 0%;
+        display: flex;
+        padding-top: 21px;
+    }
+}
+
+/* Cross Button in Sidebar */
+.sidebar .cros {
+    cursor: pointer;
+}
+
+#navHide {
+    margin-top: 23px;
+    font-size: 22px;
+}
+
+#topic {
+    font-size: 21px;
+    text-shadow: 2px 4px 2px black;
+}
+
+#con {
+    background-color: white;
+    padding: 6px;
+    padding-top: 9px;
+}
+
+/* Profile Image Styles */
+.profile, .myProfile {
+    height: 38px;
+    width: 38px;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.myProfile {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    border-radius: 44px;
+}
+
+/* Error 404 Styles */
+.error-404 {
+    padding: 30px;
+}
+
+.error-404 h1 {
+    font-size: 100px;
+    font-weight: 700;
+    color: #4154f1;
+    margin-bottom: 0;
+    line-height: 150px;
+}
+
+.error-404 h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: red;
+    margin-bottom: 30px;
+}
+
+.error-404 .btn {
+    background: #51678f;
+    color: #fff;
+    padding: 8px 30px;
+}
+
+.error-404 .btn:hover {
+    background: #3e4f6f;
+}
+
+@media (min-width: 992px) {
+    .error-404 img {
+        max-width: 50%;
+    }
+}
+
+/* Main Home Styles */
+#mainHome {
+    width: 100%;
+    height: 73vh;
+    background-image: linear-gradient(rgba(0, 2, 2, 0.8), rgba(4, 3, 0, 0.8)), url("../images/students.jpg");
+    color: white;
+    background-size: cover;
+    background-repeat: round;
+   
+    justify-content: center;
+    align-items: center;
+}
+
+/* Get Start Button Styles */
+#getStart_btn {
+    background-color: #1d828e;
+    color: white;
+    border: 1px solid;
+    border-radius: 7px;
+    padding: 6px;
+    text-decoration: none;
+}
+
+#getStart_btn:hover {
+    padding: 8px;
+    background-color: #400000;
+}
+
+.active{
+	background: #009688 !important;
+	color: white !important;
+}
+
+.nav-menu .active {
+    color: #ff0000; /* Set your desired color */
+    /* Add any other styles you want for the active link */
+}
+.nav-menu, .nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu > ul > li {
+  float: left;
+}
+
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  right: 15px;
+  bottom: 15px;
+  background: #68A4C4;
+  color: #fff;
+  z-index: 99999;
+}
+
+.back-to-top i {
+  font-size: 24px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+.back-to-top:hover {
+  color: #fff;
+  background: #85b6cf;
+  transition: background 0.2s ease-in-out;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  height: 80px;
+  transition: all 0.5s;
+  padding: 20px 0;
+  background: #1e4356;
+}
+
+#header.header-transparent {
+  background: none;
+}
+
+#header.header-scrolled {
+  background: rgba(30, 67, 86, 0.8);
+  height: 60px;
+  padding: 10px 0;
+}
+.nav-menu a {
+  display: block;
+  color: #fff;
+  padding: 10px 15px;
+  transition: 0.3s;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
+  color: #a2cce3;
+  text-decoration: none;
+}
+.bg {
+    background-color: green;
+    border-radius: 20px;
+    height: 38px;
+}
+

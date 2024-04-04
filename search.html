@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="/admin/base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Search Student Result</title>
+  </head>
+  <body>
+    <section class="container mt-4">
+      <!-- Display searched Students or all Students -->
+      <div th:if="${not #lists.isEmpty(searchedStudents)}">
+        <h2 class="text-info">Search Results</h2>
+        <hr />
+        <div class="row">
+          <div class="col-md-4 mb-4" th:each="student : ${searchedStudents}">
+            <div class="card bg-dark text-white text-center d-flex">
+              <div class="card-header">
+                <img
+                  th:src="@{'/images/'+${student.image}}"
+                  class="profile img-fluid"
+                  alt="Profile Image"
+                />
+                <h3 class="text-center" th:text="${student.name}"></h3>
+              </div>
+
+              <div class="card-body">
+                <span style="color: steelblue">Email</span>
+                <h5 class="text-center" th:text="${student.email}"></h5>
+                <span style="color: steelblue">Country</span>
+                <h5 class="text-center" th:text="${student.country}"></h5>
+                <span style="color: steelblue">City</span>
+                <h5 class="text-center" th:text="${student.city}"></h5>
+                <span style="color: steelblue">Experience</span>
+                <h5 class="text-center" th:text="${student.experience}"></h5>
+                <span style="color: steelblue">Contact no</span>
+                <h5 class="text-center" th:text="${student.phone}"></h5>
+                <span style="color: steelblue">Qualification</span>
+                <h5 class="text-center" th:text="${student.qualification}"></h5>
+              </div>
+              <div class="card-footer">
+                <span style="color: steelblue">Degree</span>
+                <h5 class="text-center" th:text="${student.degree}"></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <a th:href="@{/admin/viewStudent}" class="btn btn-primary btn-sm">
+            Back</a
+          >
+        </div>
+      </div>
+      <!-- Search user not found message -->
+      <div class="text-danger text-center mt-4">
+        <h4 th:text="${msg}"></h4>
+      </div>
+    </section>
+  </body>
+</html>
